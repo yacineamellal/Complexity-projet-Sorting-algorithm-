@@ -9,16 +9,22 @@ values are stored in the same array as the initial values (which therefore becom
 input-output parameter).
 There are many sorting algorithms.
 
--> The objectives of this project are multiple:
+The objectives of this project are multiple:
+
 • Put into practice and test some sorting algorithms;
+
 • Study sorting algorithms and calculate their complexity;
+
 • Confront theoretical complexity and evaluation of running cost;
+
 • In order to study the real cost of the algorithms, you will test them on arrays of
   integers of increasing size n filled randomly. To be reliable, time measurement must
   be done several times (for example 5 times) for a given array size. It is up to you to
   choose the values of n that seem relevant to you. For each studied sort, you will draw
   a graph representing the running time as a function of n;
+  
 • Compare the different methods from a theoretical and experimental point of view.
+
 
 ## ALgorithms 
 1. Bubble Sort
