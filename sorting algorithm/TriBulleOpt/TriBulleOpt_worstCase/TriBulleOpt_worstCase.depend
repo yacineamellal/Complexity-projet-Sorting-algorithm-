@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1700739528 source:c:\users\dell\documents\tp_complexity\tribulleopt_worstcase\main.c
+	<stdio.h>
+	<time.h>
+	<stdlib.h>
+	<math.h>
+

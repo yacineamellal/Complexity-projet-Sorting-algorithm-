@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+void print_table(int T[], int n)
+{
+
+  for (int i = 0; i < n; i++)
+  {
+    // printf("T[%d] = %d \n",i,T[i]);
+    if (i != (n - 1))
+    {
+      printf("[%d]---", T[i]);
+      //printf("\n");
+    }
+    else
+    {
+      printf("[%d]", T[i]);
+    }
+  }
+}
+// Fills an array with random numbers between 0 and 999.
+void random_case(int T[], int n)
+{
+  srand(time(0));
+  for (int i = 0; i <= n; i++)
+  {
+    T[i] = rand() % 1000;
+  }
+}
+// Fills an array with numbers in ascending order.
+//best case
+void croissant_case(int T[], int n)
+{
+  for (int i = 0; i <= n; i++)
+  {
+    T[i] = i;
+  }
+}
+// Fills an array with numbers in descending order.
+//worst case
+void decroissant_case(int T[], int n)
+{
+  for (int i = 0; i <= n; i++)
+  {
+    T[i] = n-i;
+  }
+}
+//fonction tri à bulles
+//complexité temporelle effectue dans le pire cas est de O(n^2) "le tableau n'est pas triée "
+// dans le meilleure cas le tableau est triée deja donc elle est d'ordre Omega(n)
+void tribulles(int T[], int n)
+{
+  int x;
+  int change = 1;//vrai
+  while (change == 1)
+  {
+    change = 0;// le mit a faux (pas de changement)
+    for (int j = 0; j < n - 1; j++)
+    {
+      if (T[j] > T[j + 1])
+      {
+        x = T[j];
+        T[j] = T[j + 1];
+        T[j + 1] = x;
+       // printf("\n");
+       // printtable(T, n);
+        change = 1;
+      }
+    }
+  }
+}
+
+int main()
+{
+ clock_t t1, t2;
+  float t[5]={0,0,0,0,0};
+  int vals[10] = {1000, 4000, 6000, 8000 ,9000 ,10000 ,20000 ,30000,100000,200000};
+  char lines[10][255];
+  for(int k=0; k<10; k++){
+  int n = vals[k];
+  printf("n = %d \n",n);
+  int p[n];
+
+  for(int j=0; j<5;j++) //we test the same value of n after 5 try
+  {
+  decroissant_case(p, n);
+  print_table(p,n);
+  t1 = clock();
+   tribulles(p,n);
+  t2 = clock();
+    print_table(p,n);
+
+  t[j] = (float)(t2 - t1) / CLOCKS_PER_SEC;
+
+  printf("\n time = %.9f \n", t[j]);
+   sprintf(lines[k], "%d,%f,%f,%f,%f,%f \n", n, t[0],t[1],t[2],t[3],t[4]);
+   }
+  }
+    FILE* fp = fopen("TriBulleWorst_resultats.txt", "w");
+   for(int i=0; i<10; i++){
+        fprintf(fp , lines[i]);
+    }
+
+    fclose(fp);
+
+
+  return 0;
+}
